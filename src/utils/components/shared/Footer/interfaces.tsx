@@ -6,7 +6,7 @@ export interface Address {
     city: string;
     buildingNumber: string;
 }
-export interface account{
+export interface account {
     accountType: "personal" | "business";
     homeAddress: Address;
     registerAddress: Address;
@@ -19,7 +19,7 @@ export interface account{
     identityVerification: identityVerification;
     certification: certification;
 }
-export interface personalInformation{
+export interface personalInformation {
     title: string;
     firstName: string;
     middleName: string;
@@ -29,7 +29,7 @@ export interface personalInformation{
     nationality: string;
     gender: string;
 }
-export interface businessInformation{
+export interface businessInformation {
     UTRNumber: string;
     VATNumber: string;
 }
@@ -38,13 +38,13 @@ export interface paymentDetails {
     companyInformation: string;
     businessName: string;
 }
-export interface bankDetails{
+export interface bankDetails {
     bankName: string;
     accountNumber: string;
     sortCode: string;
     fullNameOnCard: string;
 }
-export interface paymentDetails{
+export interface paymentDetails {
     bankName: string;
     fullNameOnCard: string;
     cardNumber: string;

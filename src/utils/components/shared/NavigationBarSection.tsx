@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import "@/i18n";
 import { useTranslation } from "react-i18next";
+import "@/i18n";
 
 export const NavigationBarSection = () => {
     const { t, i18n } = useTranslation();
@@ -10,12 +10,18 @@ export const NavigationBarSection = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const navigationItems = [
-        { label: "home.home", href: "/" },
+        {
+            label: "home.home",
+            href: "/"
+        },
         {
             label: "home.serviceProviders",
             href: "/service-providers",
         },
-        { label: "home.investors", href: "/investors" },
+        {
+            label: "home.partnerships",
+            href: "/investors"
+        },
     ];
 
     const handleContactClick = () => {
@@ -32,7 +38,7 @@ export const NavigationBarSection = () => {
 
     return (
         <nav
-            className="w-full flex flex-col items-center gap-2.5 px-4 py-6 relative"
+            className="w-full flex flex-col items-center gap-2.5 md:px-16 px-4 py-6 relative"
             role="navigation"
             aria-label="Main navigation"
         >
@@ -64,9 +70,8 @@ export const NavigationBarSection = () => {
                                     aria-current={isActive ? "page" : undefined}
                                 >
                                     <span
-                                        className={`relative w-fit text-[#21272a] text-base tracking-[0] leading-4 whitespace-nowrap ${
-                                            isActive ? "font-bold" : "font-medium"
-                                        }`}
+                                        className={`relative w-fit text-[#21272a] text-base tracking-[0] leading-4 whitespace-nowrap ${isActive ? "font-bold" : "font-medium"
+                                            }`}
                                     >
                                         {t(item.label)}
                                     </span>
@@ -88,7 +93,7 @@ export const NavigationBarSection = () => {
                     >
                         {t("home.contactUs")}
                     </button>
-                    <button onClick={() => changeLanguage('en')} className="p-0 border-0 bg-transparent cursor-pointer">
+                    {/* <button onClick={() => changeLanguage('en')} className="p-0 border-0 bg-transparent cursor-pointer">
                         <img src="/gb.png" alt="English" className="w-8 h-8 rounded-full" />
                     </button>
                     <button onClick={() => changeLanguage('fr')} className="p-0 border-0 bg-transparent cursor-pointer">
@@ -96,7 +101,7 @@ export const NavigationBarSection = () => {
                     </button>
                     <button onClick={() => changeLanguage('ro')} className="p-0 border-0 bg-transparent cursor-pointer">
                         <img src="/ro.png" alt="Français" className="w-8 h-8 rounded-full" />
-                    </button>
+                    </button> */}
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -129,9 +134,8 @@ export const NavigationBarSection = () => {
                                 <li key={index}>
                                     <Link
                                         href={item.href}
-                                        className={`block px-3 py-2 rounded-md text-base font-medium ${
-                                            isActive ? "bg-blue-100 text-blue-700" : "text-gray-700 hover:bg-gray-50"
-                                        }`}
+                                        className={`block px-3 py-2 rounded-md text-base font-medium ${isActive ? "bg-blue-100 text-blue-700" : "text-gray-700 hover:bg-gray-50"
+                                            }`}
                                         aria-current={isActive ? "page" : undefined}
                                         onClick={() => setIsMobileMenuOpen(false)}
                                     >

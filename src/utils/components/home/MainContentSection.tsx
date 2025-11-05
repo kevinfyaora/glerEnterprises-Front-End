@@ -1,69 +1,16 @@
 import React, { useMemo, useState } from "react";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import Notification from "@/utils/components/shared/Notification";
-
+import { howItWorksSteps, services } from './data';
 export const MainContentSection = () => {
     const [formData, setFormData] = useState({
         email: "",
         phone: "",
         name: "",
     });
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' | 'warning' } | null>(null);
 
-    const howItWorksSteps = useMemo(() => [
-        {
-            icon: "/calendarView.svg",
-            alt: "calendar view",
-            title: t('home.requestBooking'),
-            description: t('home.requestBookingDescription')
-        },
-        {
-            icon: "/clientComunicate.svg",
-            alt: "Client Comunicate",
-            title: t('home.getMatched'),
-            description: t('home.getMatchedDescription')
-        },
-        {
-            icon: "/clockWait.svg",
-            alt: "clock wait",
-            title: t('home.relaxAndReview'),
-            description: t('home.relaxAndReviewDescription')
-        }
-    ], [i18n.language, t]);
-
-    const services = useMemo(() => [
-        {
-            name: 'home-cleaning',
-            image: "/HomeCleaning.svg",
-            alt: "Home Cleaning Service",
-            title: t('home.homeCleaning'),
-            description: t('home.homeCleaningDescription'),
-            buttonText: t('home.bookPropertyCleaning'),
-            imagePosition: 'left',
-            imageContainerClass: "w-full md:w-1/2 flex items-center justify-center"
-        },
-        {
-            name: 'car-valet',
-            image: "/carwashCleaing.svg",
-            alt: "Carwash Cleaning Service",
-            title: t('home.carValet'),
-            description: t('home.carValetDescription'),
-            buttonText: t('home.bookCarValetService'),
-            imagePosition: 'right',
-            imageContainerClass: "w-full md:w-1/2 relative"
-        },
-        {
-            name: 'window-cleaning',
-            image: "/windowCleaning.svg",
-            alt: "Window cleaning Service",
-            title: t('home.windowCleaning'),
-            description: t('home.windowCleaningDescription'),
-            buttonText: t('home.bookWindowCleaning'),
-            imagePosition: 'left',
-            imageContainerClass: "w-full md:w-1/2 relative"
-        }
-    ], [i18n.language, t]);
     const handleInputChange = (field: string, value: string) => {
         setFormData((prev) => ({
             ...prev,
@@ -84,7 +31,7 @@ export const MainContentSection = () => {
     };
 
     return (
-        <section className="flex w-full flex-col items-center justify-center gap-8 px-4 pt-16 pb-20 sm:px-8 md:px-20 lg:gap-12">
+        <>
             {notification && (
                 <Notification
                     message={notification.message}
@@ -109,10 +56,10 @@ export const MainContentSection = () => {
                                 />
                             </div>
                             <h3 className="text-coolgray-90 font-['Poppins-SemiBold',_sans-serif] text-lg font-semibold self-stretch leading-[140%]">
-                                {step.title}
+                                {t(step.title)}
                             </h3>
                             <p className="text-coolgray-90 font-['Poppins-Regular',_sans-serif] text-lg font-normal self-stretch leading-[140%]">
-                                {step.description}
+                                {t(step.description)}
                             </p>
                         </div>
                     ))}
@@ -147,11 +94,11 @@ export const MainContentSection = () => {
                             <div className="flex w-full flex-col items-start justify-center gap-8 py-8 md:w-1/2 md:gap-12">
                                 <div className="flex flex-col items-start self-stretch gap-2">
                                     <h3 className="self-stretch text-left font-['Poppins-Bold',_sans-serif] text-2xl font-bold leading-[110%] text-[#21272a] md:text-[32px]">
-                                        {service.title}
+                                        {t(service.title)}
                                     </h3>
                                 </div>
                                 <p className="self-stretch text-left font-['Poppins-Regular',_sans-serif] text-lg font-normal leading-[140%] text-[#21272a]">
-                                    {service.description}
+                                    {t(service.description)}
                                 </p>
                                 <button
                                     type="button"
@@ -159,7 +106,7 @@ export const MainContentSection = () => {
                                     className="flex h-12 items-center justify-center rounded-full bg-blue-600 px-8 font-poppins text-base font-medium text-white shadow-[1px_1px_3px_rgba(0,0,0,0.1),_5px_3px_6px_rgba(0,0,0,0.09),_10px_8px_8px_rgba(0,0,0,0.05),_18px_13px_9px_rgba(0,0,0,0.01),_29px_21px_10px_rgba(0,0,0,0)] transition-opacity hover:opacity-90"
                                     style={{ letterSpacing: "0.5px" }}
                                 >
-                                    {service.buttonText}
+                                    {t(service.buttonText)}
                                 </button>
                             </div>
                         );
@@ -173,6 +120,6 @@ export const MainContentSection = () => {
                     })}
                 </div>
             </section>
-        </section>
+        </>
     );
 };

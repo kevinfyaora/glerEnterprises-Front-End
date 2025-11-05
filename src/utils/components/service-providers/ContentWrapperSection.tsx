@@ -1,47 +1,8 @@
 import React, { memo } from "react";
-import SignUp from "../../../../public/SignUp.svg";
-import female from "../../../../public/female.svg";
-import jobHunt from "../../../../public/jobHunt.svg";
-import calendarGuy from "../../../../public/calendarGuy.svg";
 import { useTranslation } from "react-i18next";
-
+import { steps } from './data';
 export const ContentWrapperSection = memo(() => {
     const { t } = useTranslation();
-
-    const steps = [
-        {
-            id: 1,
-            image: SignUp,
-            alt: "Element",
-            title: t("joinWaitlistServiceProviders.steps.signUp.title"),
-            description: t("joinWaitlistServiceProviders.steps.signUp.description"),
-            imageClass: "relative w-[90px] h-[90px] aspect-[1]",
-        },
-        {
-            id: 2,
-            image: female,
-            alt: "Frame",
-            title: t("joinWaitlistServiceProviders.steps.verification.title"),
-            description: t("joinWaitlistServiceProviders.steps.verification.description"),
-            imageClass: "relative w-[90px] h-[90px]",
-        },
-        {
-            id: 3,
-            image: jobHunt,
-            alt: "Job hunt amico",
-            title: t("joinWaitlistServiceProviders.steps.getJobs.title"),
-            description: t("joinWaitlistServiceProviders.steps.getJobs.description"),
-            imageClass: "relative w-[90px] h-[90px] aspect-[1]",
-        },
-        {
-            id: 4,
-            image: calendarGuy,
-            alt: "Group",
-            title: t("joinWaitlistServiceProviders.steps.getPaid.title"),
-            description: t("joinWaitlistServiceProviders.steps.getPaid.description"),
-            imageClass: "relative w-[142.38px] h-[90px] aspect-[1.58]",
-        },
-    ];
 
     return (
         <section className="w-full flex flex-col items-center gap-12 md:gap-16 px-4 py-10 md:p-20 bg-GLORIOUS-ui-section-bg relative">
@@ -63,14 +24,14 @@ export const ContentWrapperSection = memo(() => {
                         className="flex flex-col items-center gap-4 px-4 py-0 relative flex-1"
                         role="listitem"
                     >
-                        <img className={step.imageClass} alt={step.alt} src={step.image.src} />
+                        <img className={step.imageClass} alt={step.alt} src={step.image} />
 
                         <h3 className="relative self-stretch [font-family:'Poppins-SemiBold',Helvetica] font-semibold text-coolgray-90 text-lg text-center tracking-[0] leading-[25.2px]">
-                            {step.title}
+                            {t(step.title)}
                         </h3>
 
                         <p className="[font-family:'Poppins-Regular',Helvetica] text-center relative self-stretch font-normal text-coolgray-90 text-lg tracking-[0] leading-[25.2px]">
-                            {step.description}
+                            {t(step.description)}
                         </p>
                     </div>
                 ))}
