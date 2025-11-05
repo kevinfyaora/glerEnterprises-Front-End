@@ -1,7 +1,7 @@
 'use client';
 import React, { createContext, useContext, useState } from 'react';
 import { Api } from '@/api/Api';
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export interface RefreshKeyDTO {
     refreshToken?: string;

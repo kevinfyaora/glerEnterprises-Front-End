@@ -5,7 +5,6 @@ import { Instagram } from "./Instagram";
 import { Linkedin } from "./Linkedin";
 import { Twitter } from "./Twitter";
 import { Youtube } from "./Youtube";
-import gler from "../../../../../public/gler.svg";
 import Link from "next/link";
 
 export const Footer = memo(() => {
@@ -22,7 +21,7 @@ export const Footer = memo(() => {
     const navigationLinks = [
         { textKey: "footer.customers", href: "/" },
         { textKey: "footer.serviceProviders", href: "/service-providers" },
-        { textKey: "footer.investors", href: "/investors" },
+        { textKey: "footer.partnerships", href: "/investors" },
     ];
 
     return (
@@ -32,7 +31,7 @@ export const Footer = memo(() => {
                     <img
                         className="h-[50px] w-[59px]"
                         alt={t("footer.alt.logo")}
-                        src={gler.src}
+                        src="/gler.svg"
                     />
                 </Link>
                 <nav

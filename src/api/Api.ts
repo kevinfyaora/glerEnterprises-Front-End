@@ -204,13 +204,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request POST:/api/v1/auth/login
      */
     authenticate: (data: LoginDTO, params: RequestParams = {}) =>
-        this.request<AuthResponseDTO, any>({ // Use AuthResponseDTO as the response type
-          path: `/api/v1/auth/login`,
-          method: "POST",
-          body: data,
-          type: ContentType.Json,
-          ...params,
-        }),
+      this.request<AuthResponseDTO, any>({ // Use AuthResponseDTO as the response type
+        path: `/api/v1/auth/login`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
+        ...params,
+      }),
 
     /**
      * No description

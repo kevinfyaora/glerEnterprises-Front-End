@@ -21,7 +21,7 @@
   "home": {
     "home": "Home",
     "serviceProviders": "Service Providers",
-    "investors": "Investors",
+    "partnerships": "Partnerships",
     "contactUs": "Contact Us",
     "howItWorks": "HOW IT WORKS",
     "requestBooking": "Request a Booking",
@@ -240,7 +240,7 @@
   "footer": {
     "customers": "Customers",
     "serviceProviders": "Service Providers",
-    "investors": "Investors",
+    "partnerships": "Partnerships",
     "rightsReserved": "Gler @ 2025. All rights reserved.",
     "alt": {
       "logo": "Gler logo"

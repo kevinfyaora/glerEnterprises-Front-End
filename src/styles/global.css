@@ -20,7 +20,9 @@
     }
 }
 
-html, body, #__next {
+html,
+body,
+#__next {
     height: 100%;
     width: 100%;
     margin: 0;
@@ -28,6 +30,7 @@ html, body, #__next {
 }
 
 @layer base {
+
     button,
     input,
     select,
@@ -38,13 +41,10 @@ html, body, #__next {
 
 :root {
     --artboard-shadow: 0px 4px 28px 0px rgba(18, 21, 58, 0.1);
-    --DS-blog-card: 0px 14px 24px -1px rgba(72, 101, 128, 0.14), 0px 0px 6px 0px
-    rgba(72, 101, 128, 0.07);
+    --DS-blog-card: 0px 14px 24px -1px rgba(72, 101, 128, 0.14), 0px 0px 6px 0px rgba(72, 101, 128, 0.07);
     --DS-booking-selection: 0px 18px 28px 0px rgba(72, 101, 128, 0.18);
-    --DS-button: 0px 4px 12px -1px rgba(0, 0, 0, 0.12), 0px 2px 4px 0px
-    rgba(0, 0, 0, 0.08);
-    --DS-icon: 0px 14px 24px -1px rgba(18, 21, 58, 0.14), 0px 0px 6px 0px
-    rgba(18, 21, 58, 0.07);
+    --DS-button: 0px 4px 12px -1px rgba(0, 0, 0, 0.12), 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
+    --DS-icon: 0px 14px 24px -1px rgba(18, 21, 58, 0.14), 0px 0px 6px 0px rgba(18, 21, 58, 0.07);
     --DS-navigation: 0px 8px 22px -2px rgba(73, 87, 106, 0.15);
     --GLORIOUS-blue-100: rgba(26, 120, 242, 1);
     --GLORIOUS-blue-900: rgba(104, 150, 209, 1);

@@ -1,19 +1,19 @@
 import "@/i18n";
 import React from 'react';
 import Waitlist from "@/utils/components/home/joinWaitlist";
-import {NavigationBarSection} from "@/utils/components/shared/NavigationBarSection";
-import {Footer} from "@/utils/components/shared/Footer/Footer";
-import {ContactFormSection} from "@/utils/components/shared/ContactFormSection";
-import {MainContentSection} from "@/utils/components/home/MainContentSection";
+import { NavigationBarSection } from "@/utils/components/shared/NavigationBarSection";
+import { Footer } from "@/utils/components/shared/Footer/Footer";
+import { ContactFormSection } from "@/utils/components/shared/ContactFormSection";
+import { MainContentSection } from "@/utils/components/home/MainContentSection";
 
 export interface ILandingPageCostumerWebProps {
     className?: string;
 }
 
 export default function LandingPageCostumerWeb({
-                                                   className,
-                                                   ...props
-                                               }: ILandingPageCostumerWebProps) {
+    className,
+    ...props
+}: ILandingPageCostumerWebProps) {
     return (
         <div
             className={
@@ -22,7 +22,7 @@ export default function LandingPageCostumerWeb({
             }
         >
             <NavigationBarSection />
-            <Waitlist/>
+            <Waitlist />
             <MainContentSection />
             <div id="contact-us">
                 <ContactFormSection />

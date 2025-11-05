@@ -1,4 +1,4 @@
-import React, {JSX} from "react";
+import React, { JSX } from "react";
 import { ContactFormSection } from "@/utils/components/shared/ContactFormSection";
 import { ContentWrapperSection } from "@/utils/components/investors/ContentWrapperSection";
 import { Footer } from "@/utils/components/shared/Footer/Footer";

@@ -1,8 +1,9 @@
 import React, { useState, memo } from "react";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { environment } from "@/environment";
 import Notification from "@/utils/components/shared/Notification";
+import { benefits } from "./data";
 
 export const MainContentSection = memo(() => {
     const [formData, setFormData] = useState({
@@ -15,15 +16,6 @@ export const MainContentSection = memo(() => {
     const [emailError, setEmailError] = useState("");
     const [nameError, setNameError] = useState("");
     const [phoneError, setPhoneError] = useState("");
-
-
-    const benefits = [
-        {id: "industry", title: "benefitsInvestors.industry"},
-        {id: "scalable", title: "benefitsInvestors.scalable"},
-        {id: "high", title: "benefitsInvestors.high"},
-        {id: "built", title: "benefitsInvestors.built"},
-        {id: "thorough", title: "benefitsInvestors.thorough"},
-    ];
 
     const validateEmail = (email: string) => {
         if (!email) {
@@ -125,21 +117,113 @@ export const MainContentSection = memo(() => {
                     onClose={() => setNotification(null)}
                 />
             )}
-            <section className="flex flex-col w-full items-center justify-center gap-8 lg:gap-12 pt-16 pb-20 px-4 sm:px-8 md:px-20">
-                <header className="flex flex-col items-center gap-2 w-full max-w-7xl">
-                    <p className="relative self-stretch [font-family:'Roboto-Bold',Helvetica] font-bold text-primary-90 text-lg md:text-xl text-center tracking-[1.00px] leading-5">
-                        {t("joinWaitlistInvestors.header.subtitle")}
-                    </p>
-                    <h1 className="relative self-stretch [font-family:'Poppins-Bold',Helvetica] font-bold text-coolgray-90 text-4xl md:text-[54px] text-center tracking-[0] leading-tight md:leading-[59.4px]">
-                        {t("joinWaitlistInvestors.header.title")}
-                    </h1>
-                </header>
+            <section className="flex w-full flex-col items-center gap-10 md:gap-12 py-12 px-4 md:py-24 md:px-20">
+                <div className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20">
+                    <div className="w-full md:w-1/2 items-start justify-center">
+                        <header className="w-full max-w-7xl flex flex-col mb-8 items-start md:items-center justify-center gap-2">
+                            <p className="relative self-stretch [font-family:'Roboto-Bold',Helvetica] font-bold text-primary-90 text-lg md:text-xl text-center md:text-left tracking-[1.00px] leading-5">
+                                {t("joinWaitlistInvestors.header.subtitle")}
+                            </p>
+                            <h1 className="relative self-stretch [font-family:'Poppins-Bold',Helvetica] font-bold text-coolgray-90 text-4xl md:text-[54px] text-center md:text-left tracking-[0] leading-tight md:leading-[59.4px]">
+                                {t("joinWaitlistInvestors.header.title")}
+                            </h1>
+                        </header>
 
-                <div className="flex flex-col lg:flex-row w-full max-w-7xl items-start justify-center gap-8 lg:gap-20">
-                    <aside className="flex flex-col w-full lg:w-[545px] items-center justify-center gap-4 relative bg-variable-collection-bg p-4 rounded-lg">
-                        <div className="flex flex-col h-full items-center justify-center gap-4 self-stretch w-full">
+                        <div className="w-full flex flex-col items-start justify-center">
+                            {/* <div className="flex flex-col w-full lg:w-[655px] items-start justify-center"> */}
+                            <form
+                                onSubmit={handleSubmit}
+                                className="flex flex-col items-start gap-6 relative self-stretch w-full"
+                            >
+                                <div className="flex flex-col w-full items-start gap-1 relative">
+                                    <div className="flex flex-col items-start gap-2 relative self-stretch w-full">
+                                        <label
+                                            htmlFor="email"
+                                            className="relative self-stretch [font-family:'Poppins-SemiBold',Helvetica] font-semibold text-coolgray-90 text-xl md:text-2xl tracking-[-0.48px] leading-[28.8px]"
+                                        >
+                                            {t("joinWaitlist.form.email.label")}
+                                        </label>
+
+                                        <div className="flex h-12 items-center gap-2 px-4 py-3 relative self-stretch w-full bg-[#f3f8ff] border-b [border-bottom-style:solid] border-[#c1c7cd]">
+                                            <input
+                                                id="email"
+                                                type="email"
+                                                value={formData.email}
+                                                onChange={(e) => handleInputChange("email", e.target.value)}
+                                                placeholder={t("joinWaitlist.form.email.placeholder")}
+                                                required
+                                                className="relative flex-1 [font-family:'Poppins-Regular',Helvetica] font-normal text-coolgray-60 text-base tracking-[0] leading-[22.4px] bg-transparent border-none outline-none placeholder:text-coolgray-60"
+                                            />
+                                        </div>
+                                        {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col w-full items-start gap-1 relative">
+                                    <div className="flex flex-col items-start gap-2 relative self-stretch w-full">
+                                        <label
+                                            htmlFor="name"
+                                            className="relative self-stretch [font-family:'Poppins-SemiBold',Helvetica] font-semibold text-coolgray-90 text-xl md:text-2xl tracking-[-0.48px] leading-[28.8px]"
+                                        >
+                                            {t("joinWaitlistInvestors.form.name.label")}
+                                        </label>
+
+                                        <div className="flex h-12 items-center gap-2 px-4 py-3 relative self-stretch w-full bg-[#f3f8ff] border-b [border-bottom-style:solid] border-[#c1c7cd]">
+                                            <input
+                                                id="name"
+                                                type="text"
+                                                value={formData.name}
+                                                onChange={(e) => handleInputChange("name", e.target.value)}
+                                                placeholder={t("joinWaitlistInvestors.form.name.placeholder")}
+                                                required
+                                                className="relative flex-1 [font-family:'Poppins-Regular',Helvetica] font-normal text-coolgray-60 text-base tracking-[0] leading-[22.4px] bg-transparent border-none outline-none placeholder:text-coolgray-60"
+                                            />
+                                        </div>
+                                        {nameError && <p className="text-red-500 text-xs mt-1">{nameError}</p>}
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col w-full items-start gap-1 relative">
+                                    <div className="flex flex-col items-start gap-2 relative self-stretch w-full">
+                                        <label
+                                            htmlFor="phone"
+                                            className="relative self-stretch [font-family:'Poppins-SemiBold',Helvetica] font-semibold text-coolgray-90 text-xl md:text-2xl tracking-[-0.48px] leading-[28.8px]"
+                                        >
+                                            {t("joinWaitlistInvestors.form.phone.label")}
+                                        </label>
+
+                                        <div className="flex h-12 items-center gap-2 px-4 py-3 relative self-stretch w-full bg-[#f3f8ff] border-b [border-bottom-style:solid] border-variable-collection-stroke">
+                                            <input
+                                                id="phone"
+                                                type="tel"
+                                                value={formData.phone}
+                                                onChange={(e) =>
+                                                    handleInputChange("phone", e.target.value)
+                                                }
+                                                placeholder={t("joinWaitlist.form.phone.placeholder")}
+                                                required
+                                                className="relative flex-1 [font-family:'Poppins-Regular',Helvetica] font-normal text-coolgray-60 text-base tracking-[0] leading-[22.4px] bg-transparent border-none outline-none placeholder:text-coolgray-60"
+                                            />
+                                        </div>
+                                        {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
+                                    </div>
+                                </div>
+                                <button
+                                    type="submit"
+                                    className={`${buttonBaseClasses} w-auto bg-blue-600 text-white`}
+                                    style={{ letterSpacing: '0.5px' }}
+                                >
+                                    {t("joinWaitlistInvestors.form.submit")}
+                                </button>
+                            </form>
+                            {/* </div> */}
+                        </div>
+                    </div>
+                    <div className="w-full md:w-1/2 content-center justify-center">
+                        <aside className="flex flex-col justify-center md:gap-20 gap-8 p-4 md:p-8 bg-variable-collection-bg rounded-lg">
+                            {/* <div className="flex flex-col h-full items-center justify-center gap-8 self-stretch w-full"> */}
                             {benefits.map((benefit) => (
-                                <div className="flex items-center gap-4 p-4 relative self-stretch w-full" key={benefit.id}>
+                                <div className="flex items-center gap-4 w-full" key={benefit.id}>
                                     <img
                                         className="relative w-12 h-12"
                                         alt={t("joinWaitlist.alt.greenCheck")}
@@ -150,95 +234,8 @@ export const MainContentSection = memo(() => {
                                     </p>
                                 </div>
                             ))}
-                        </div>
-                    </aside>
-
-                    <div className="flex flex-col w-full lg:w-[655px] items-start justify-center">
-                        <form
-                            onSubmit={handleSubmit}
-                            className="flex flex-col items-start gap-6 relative self-stretch w-full"
-                        >
-                            <div className="flex flex-col w-full items-start gap-1 relative">
-                                <div className="flex flex-col items-start gap-2 relative self-stretch w-full">
-                                    <label
-                                        htmlFor="email"
-                                        className="relative self-stretch [font-family:'Poppins-SemiBold',Helvetica] font-semibold text-coolgray-90 text-xl md:text-2xl tracking-[-0.48px] leading-[28.8px]"
-                                    >
-                                        {t("joinWaitlist.form.email.label")}
-                                    </label>
-
-                                    <div className="flex h-12 items-center gap-2 px-4 py-3 relative self-stretch w-full bg-[#f3f8ff] border-b [border-bottom-style:solid] border-[#c1c7cd]">
-                                        <input
-                                            id="email"
-                                            type="email"
-                                            value={formData.email}
-                                            onChange={(e) => handleInputChange("email", e.target.value)}
-                                            placeholder={t("joinWaitlist.form.email.placeholder")}
-                                            required
-                                            className="relative flex-1 [font-family:'Poppins-Regular',Helvetica] font-normal text-coolgray-60 text-base tracking-[0] leading-[22.4px] bg-transparent border-none outline-none placeholder:text-coolgray-60"
-                                        />
-                                    </div>
-                                    {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
-                                </div>
-                            </div>
-
-                            <div className="flex flex-col w-full items-start gap-1 relative">
-                                <div className="flex flex-col items-start gap-2 relative self-stretch w-full">
-                                    <label
-                                        htmlFor="name"
-                                        className="relative self-stretch [font-family:'Poppins-SemiBold',Helvetica] font-semibold text-coolgray-90 text-xl md:text-2xl tracking-[-0.48px] leading-[28.8px]"
-                                    >
-                                        {t("joinWaitlistInvestors.form.name.label")}
-                                    </label>
-
-                                    <div className="flex h-12 items-center gap-2 px-4 py-3 relative self-stretch w-full bg-[#f3f8ff] border-b [border-bottom-style:solid] border-[#c1c7cd]">
-                                        <input
-                                            id="name"
-                                            type="text"
-                                            value={formData.name}
-                                            onChange={(e) => handleInputChange("name", e.target.value)}
-                                            placeholder={t("joinWaitlistInvestors.form.name.placeholder")}
-                                            required
-                                            className="relative flex-1 [font-family:'Poppins-Regular',Helvetica] font-normal text-coolgray-60 text-base tracking-[0] leading-[22.4px] bg-transparent border-none outline-none placeholder:text-coolgray-60"
-                                        />
-                                    </div>
-                                    {nameError && <p className="text-red-500 text-xs mt-1">{nameError}</p>}
-                                </div>
-                            </div>
-
-                            <div className="flex flex-col w-full items-start gap-1 relative">
-                                <div className="flex flex-col items-start gap-2 relative self-stretch w-full">
-                                    <label
-                                        htmlFor="phone"
-                                        className="relative self-stretch [font-family:'Poppins-SemiBold',Helvetica] font-semibold text-coolgray-90 text-xl md:text-2xl tracking-[-0.48px] leading-[28.8px]"
-                                    >
-                                        {t("joinWaitlistInvestors.form.phone.label")}
-                                    </label>
-
-                                    <div className="flex h-12 items-center gap-2 px-4 py-3 relative self-stretch w-full bg-[#f3f8ff] border-b [border-bottom-style:solid] border-variable-collection-stroke">
-                                        <input
-                                            id="phone"
-                                            type="tel"
-                                            value={formData.phone}
-                                            onChange={(e) =>
-                                                handleInputChange("phone", e.target.value)
-                                            }
-                                            placeholder={t("joinWaitlist.form.phone.placeholder")}
-                                            required
-                                            className="relative flex-1 [font-family:'Poppins-Regular',Helvetica] font-normal text-coolgray-60 text-base tracking-[0] leading-[22.4px] bg-transparent border-none outline-none placeholder:text-coolgray-60"
-                                        />
-                                    </div>
-                                    {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
-                                </div>
-                            </div>
-                            <button
-                                type="submit"
-                                className={`${buttonBaseClasses} w-full bg-blue-600 text-white`}
-                                style={{ letterSpacing: '0.5px' }}
-                            >
-                                {t("joinWaitlistInvestors.form.submit")}
-                            </button>
-                        </form>
+                            {/* </div> */}
+                        </aside>
                     </div>
                 </div>
             </section>
